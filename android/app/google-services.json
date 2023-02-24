@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "69755685049",
+    "project_id": "fir-getx-app-9fe08",
+    "storage_bucket": "fir-getx-app-9fe08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69755685049:android:1c017d35b0b02d3da8b368",
+        "android_client_info": {
+          "package_name": "com.tawaffff.untitled1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "69755685049-bueo7rm4pruqtqr9pk9porr8tqkv3md5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIHt5TlF4G4RgGoNeWvE3s6JKmpRFQP9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "69755685049-bueo7rm4pruqtqr9pk9porr8tqkv3md5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "69755685049-438rkmbqsp815mlr05a897o8n3mljilt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.com.tawaffff.untitled1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
