@@ -24,12 +24,12 @@ class AuthController extends GetxController{
   }
 
   _initialScreen(User? user){
-    if(user==null){
-      print("login page");
-      Get.offAll(()=>LoginPage());
-    } else {
-      Get.offAll(()=>WelcomePage(email:user.email!));
-    }
+    // if(user==null){
+    //   print("login page");
+    //   Get.offAll(()=>LoginPage());
+    // } else {
+    //   Get.offAll(()=>WelcomePage(email:user.email!));
+    // }
 
     }
 
