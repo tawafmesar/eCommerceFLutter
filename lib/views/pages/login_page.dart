@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     try {
       await model.submit();
       if (!mounted) return;
-      Navigator.of(context).pushNamed(AppRoutes.bottomNavRoute);
+      Navigator.of(context).pushNamed(AppRoutes.landingPageRoute);
     } catch (e) {
       showDialog(context: context, builder: (_) => AlertDialog(
         title: Text('Error',style: Theme.of(context).textTheme.titleMedium,),
