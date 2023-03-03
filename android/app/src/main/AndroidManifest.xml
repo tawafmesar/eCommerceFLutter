@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tawaffff.untitled1">
+    package="com.tawafmesar.ecommerceflutter">
 
    <application
         android:label="untitled1"
