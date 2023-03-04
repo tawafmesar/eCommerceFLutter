@@ -56,10 +56,13 @@ class AuthController with ChangeNotifier {
     notifyListeners();
   }
 
-
-
-
-
+  Future<void> logout() async {
+    try {
+      await auth.logout();
+    } catch (e) {
+      rethrow;
+    }
+  }
 
 }
 

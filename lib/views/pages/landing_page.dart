@@ -13,7 +13,8 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthBase>(context, listen: false);
+    // final auth = Provider.of<AuthBase>(context, listen: false);
+    final auth = Provider.of<AuthBase>(context);
 
     return StreamBuilder<User?>(
         stream: auth.authStateChanges(),
@@ -24,9 +25,14 @@ class LandingPage extends StatelessWidget {
               return ChangeNotifierProvider<AuthController>(
                   create: (_) => AuthController(auth: auth),
                   child: const LoginPage());
+
             }
 
-            return const BottomNavBar();
+            return ChangeNotifierProvider<AuthController>(
+              create: (_) => AuthController(auth: auth),
+              child: const BottomNavBar(),
+            );
+
           }
           return const Scaffold(
             body: Center(

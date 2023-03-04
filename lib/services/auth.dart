@@ -5,6 +5,7 @@ abstract class AuthBase{
     Stream<User?> authStateChanges();
   Future<User?> loginWitEmailAndPassword(String email , String password);
   Future<User?> signUpWitEmailAndPassword(String email , String password);
+    Future<void> logout();
 
 }
 
