@@ -1,19 +1,20 @@
+import '../utilities/assets.dart';
 
 class Product {
   final String id;
   final String title;
   final int price;
   final String imgUrl;
-  final int? discountValue;
+  final int discountValue;
   final String category;
-  final double? rate;
+  final int? rate;
 
   Product({
     required this.id,
     required this.title,
     required this.price,
     required this.imgUrl,
-    this.discountValue,
+    this.discountValue = 0,
     this.category = 'Other',
     this.rate,
   });
@@ -38,7 +39,7 @@ class Product {
       imgUrl: map['imgUrl'] as String,
       discountValue: map['discountValue'] as int,
       category: map['category'] as String,
-      rate: map['rate'] as double,
+      rate: map['rate'] as int,
     );
   }
 }
@@ -48,7 +49,7 @@ List<Product> dummyProducts = [
     id: '1',
     title: 'T-shirt',
     price: 300,
-    imgUrl: 'img/shirt.jpg',
+    imgUrl: AppAssets.tempProductAsset1,
     category: 'Clothes',
     discountValue: 20,
   ),
@@ -56,7 +57,7 @@ List<Product> dummyProducts = [
     id: '1',
     title: 'T-shirt',
     price: 300,
-    imgUrl: 'img/shirt.jpg',
+    imgUrl: AppAssets.tempProductAsset1,
     category: 'Clothes',
     discountValue: 20,
   ),
@@ -64,7 +65,7 @@ List<Product> dummyProducts = [
     id: '1',
     title: 'T-shirt',
     price: 300,
-    imgUrl: 'img/shirt.jpg',
+    imgUrl: AppAssets.tempProductAsset1,
     category: 'Clothes',
     discountValue: 20,
   ),
@@ -72,7 +73,7 @@ List<Product> dummyProducts = [
     id: '1',
     title: 'T-shirt',
     price: 300,
-    imgUrl: 'img/shirt.jpg',
+    imgUrl: AppAssets.tempProductAsset1,
     category: 'Clothes',
     discountValue: 20,
   ),
@@ -80,14 +81,14 @@ List<Product> dummyProducts = [
     id: '1',
     title: 'T-shirt',
     price: 300,
-    imgUrl: 'img/shirt.jpg',
+    imgUrl: AppAssets.tempProductAsset1,
     category: 'Clothes',
   ),
   Product(
     id: '1',
     title: 'T-shirt',
     price: 300,
-    imgUrl: 'img/shirt.jpg',
+    imgUrl: AppAssets.tempProductAsset1,
     category: 'Clothes',
     discountValue: 20,
   ),
