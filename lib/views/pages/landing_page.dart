@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled1/controllers/database_controller.dart';
 import 'package:untitled1/services/auth.dart';
 import 'package:untitled1/views/pages/bottom_bavbar.dart';
 import '../../controllers/auth_controller.dart';
@@ -30,7 +31,11 @@ class LandingPage extends StatelessWidget {
 
             return ChangeNotifierProvider<AuthController>(
               create: (_) => AuthController(auth: auth),
-              child: const BottomNavBar(),
+              child: Provider<Database>
+              (
+               create: (_)=> FirestoreDatabase(user.uid), 
+
+                child: const BottomNavBar()),
             );
 
           }

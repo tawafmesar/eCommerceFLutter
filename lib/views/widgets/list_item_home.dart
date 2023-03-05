@@ -17,9 +17,10 @@ class ListItemHome extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12.0),
-                child: Image(
-                  image: AssetImage(product.imgUrl),
+                child: Image.network(
+                  product.imgUrl,
                   width: 200,
+                  height: 200,
                   fit: BoxFit.cover,
                 ),
               ),
