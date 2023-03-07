@@ -5,7 +5,9 @@ import 'package:untitled1/utilities/ename.dart';
 import 'package:untitled1/views/widgets/main_buttom.dart';
 
 import '../../controllers/auth_controller.dart';
+import '../../utilities/assets.dart';
 import '../../utilities/routes.dart';
+import '../widgets/social_media_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -171,25 +173,16 @@ class _LoginPageState extends State<LoginPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            height: 80,
-                            width: 80,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16.0),
-                                color: Colors.white),
-                            child: Icon(Icons.add),
+                            SocialMediaButton(
+                            iconName: AppAssets.facebookIcon,
+                           	                            onPress: () {},
+                            ),
+                          const SizedBox(width: 16.0),
+
+                          SocialMediaButton(
+                            iconName: AppAssets.googleIcon,
+                            onPress: () {},
                           ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Container(
-                            height: 80,
-                            width: 80,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16.0),
-                                color: Colors.white),
-                            child: Icon(Icons.add),
-                          )
                         ],
                       )
                     ],

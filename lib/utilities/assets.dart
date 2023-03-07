@@ -6,4 +6,11 @@ class AppAssets {
       'https://m.media-amazon.com/images/I/61-jBuhtgZL._UX569_.jpg';
 
   /// Shop Page Images
+  /// 
+
+
+
+  /// Authentication Page Images
+  static const facebookIcon = 'assets/facebook-svgrepo-com.svg';
+  static const googleIcon = 'assets/google-svgrepo-com.svg';
 }
