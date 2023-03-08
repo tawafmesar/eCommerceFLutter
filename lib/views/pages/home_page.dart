@@ -131,6 +131,8 @@ class HomePage extends StatelessWidget {
                         );
                       }),
                 ),
+                const SizedBox(height: 8.0,)
+                ,
                 HeaderOfList(
                   onTap: () {},
                   title: 'New',
