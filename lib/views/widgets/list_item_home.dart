@@ -105,25 +105,20 @@ class ListItemHome extends StatelessWidget {
             const SizedBox(
               height: 5.0,
             ),
-           RatingBar.builder(
+            RatingBarIndicator(
               itemSize: 25.0,
-              // initialRating: (product.rate ?? 3).toDouble(),
-               initialRating: product.rate?.toDouble() ?? 3,
-
-              minRating: 0,
-              direction: Axis.horizontal,
-              allowHalfRating: true,
-              itemCount: 5,
-              itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+              rating:  product.rate?.toDouble() ?? 0.0,
               itemBuilder: (context, _) => const Icon(
                 Icons.star,
                 color: Colors.amber,
               ),
-              onRatingUpdate: (rating) {
-                debugPrint(rating.toString());
-              },
-            ),
-            const SizedBox(height: 8.0),
+              direction: Axis.horizontal,
+              itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+
+
+            )
+        
+            ,const SizedBox(height: 8.0),
 
             Text(
               product.category,

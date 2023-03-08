@@ -104,7 +104,7 @@ class HomePage extends StatelessWidget {
                   height: 8.0,
                 ),
                 SizedBox(
-                  height: 300,
+                  height: 330,
                   child: StreamBuilder<List<Product>>(
                       stream: database.salesProductsStream(),
                       builder: (context, snapshot) {
@@ -122,7 +122,7 @@ class HomePage extends StatelessWidget {
                             itemBuilder: (_, int index) => Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ListItemHome(product: products[index]                            ,    isNew: true,
-),
+                  ),
                             ),
                           );
                         }
@@ -140,7 +140,7 @@ class HomePage extends StatelessWidget {
                   height: 8.0,
                 ),
                 SizedBox(
-                  height: 300,
+                  height: 330,
                   child: StreamBuilder<List<Product>>(
                       stream: database.newProductsStream(),
                       builder: (context, snapshot) {
