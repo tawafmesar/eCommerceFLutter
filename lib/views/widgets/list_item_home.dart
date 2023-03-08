@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/models/product.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+import 'package:untitled1/utilities/routes.dart';
 
 class ListItemHome extends StatelessWidget {
   final Product product;
+  final bool isNew;
+  final VoidCallback? addToFavorites;
+  bool isFavorite;
 
-  const ListItemHome({Key? key, required this.product}) : super(key: key);
+  ListItemHome({
+    Key? key,
+    required this.product,
+    required this.isNew,
+    this.addToFavorites,
+    this.isFavorite = false,
+  }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+ final size = MediaQuery.of(context).size;
+    return InkWell(
+      onTap: () => Navigator.of(context, rootNavigator: true)
+          .pushNamed(AppRoutes.productDetailsRoute,
+        arguments: product,
+      ),
+      child: Stack(
+
         children: [
           Stack(
             children: [
@@ -33,57 +50,143 @@ class ListItemHome extends StatelessWidget {
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16.0),
-                        color: Colors.redAccent),
+                        color: isNew ? Colors.black : Colors.redAccent),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Center(
                         child: Text(
-                          '${product.discountValue.toString()}%',
+                          isNew
+                              ? 'NEW'
+                              : '${product.discountValue.toString()}%',
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall!
-                              .copyWith(color: Colors.white),
+                        
+                            .copyWith(color: Colors.white),
+                      
                         ),
                       ),
                     ),
                   ),
                 ),
-              ) // discountValue
+              ) , // discountValue
+         
             ],
           ),
-          const SizedBox(
-            height: 5.0,
-          ),
-          Text(
-            product.category,
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .copyWith(color: Colors.grey),
-          ),
-          const SizedBox(height: 4.0,),
-          Text(
-            product.title,
-            style: Theme.of(context)
-                .textTheme
-                .titleLarge!
-                .copyWith(fontWeight: FontWeight.w600),
-          ),
-          Text.rich(TextSpan(
-            children: [
-              TextSpan(
-                text: '${product.price}\$',
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: Colors.grey, decoration: TextDecoration.lineThrough),
+           Positioned(
+            left: size.width * 0.38,
+            
+            bottom: size.height * 0.11,
+            child: Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 5,
+                    color: Colors.grey,
+                    spreadRadius: 2,
+                  )
+                ],
               ),
-
-              TextSpan(
-                  text: ' '+'${product.price * (product.discountValue) / 100}\$'
-                  ,style: Theme.of(context).textTheme.titleMedium!
-              )
-            ],
-          )
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                radius: 20.0,
+                child: InkWell(
+                  onTap: addToFavorites,
+                  child: Icon(
+                    isFavorite ? Icons.favorite :Icons.favorite_outline,
+                    size: 20.0,
+                    color: isFavorite ? Colors.red : Colors.grey,
+                  ),
+                ),
+              ),
+            ),
           ),
+          Positioned(
+            bottom: 10,
+
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children:[ RatingBarIndicator(
+                    itemSize: 23.0,
+                    rating:  product.rate?.toDouble() ?? 0.0,
+                    itemBuilder: (context, _) => const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    direction: Axis.horizontal,          
+                          
+                  ),
+                  Text('(100)',style: Theme.of(context).textTheme.bodySmall,)
+              ],)
+                
+                ,const SizedBox(height: 8.0),
+          
+                Text(
+                  product.category,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Colors.grey),
+                ),
+                const SizedBox(
+                  height: 4.0,
+                ),
+                Text(
+                  product.title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(fontWeight: FontWeight.w600),
+                ),
+                // Text.rich(TextSpan(
+                //   children: [
+                //     TextSpan(
+                //       text: '${product.price}\$',
+                //       style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                //           color: Colors.grey,
+                //           decoration: TextDecoration.lineThrough),
+                //     ),
+                //     TextSpan(
+                //         text: ' ' +
+                //             '${product.price * (product.discountValue) / 100}\$',
+                //         style: Theme.of(context).textTheme.titleMedium!)
+                //   ],
+                // )),
+                          isNew
+                    ? Text(
+                        '${product.price}\$',
+                        style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                              color: Colors.grey,
+                            ),
+                      )
+                    : Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(
+                              text: '${product.price}\$  ',
+                              style:
+                                  Theme.of(context).textTheme.subtitle2!.copyWith(
+                                        color: Colors.grey,
+                                        decoration: TextDecoration.lineThrough,
+                                      ),
+                            ),
+                            TextSpan(
+                              text:
+                                  '  ${product.price * (product.discountValue!) / 100}\$',
+                              style:
+                                  Theme.of(context).textTheme.subtitle2!.copyWith(
+                                        color: Colors.red,
+                                      ),
+                            ),
+                          ],
+                        ),
+                      ),
+              ],
+            ),
+          )
         ],
       ),
     );

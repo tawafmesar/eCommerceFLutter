@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled1/controllers/database_controller.dart';
 import 'package:untitled1/models/product.dart';
-import 'package:untitled1/utilities/assets.dart';
 import 'package:untitled1/views/widgets/list_item_home.dart';
+
+import '../widgets/header_of_list.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -94,13 +95,16 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               children: [
-                _buildHeaderOfList(context,
-                    title: "Sale", description: "Super Summer Sale!!"),
+                HeaderOfList(
+                  onTap: () {},
+                  title: 'Sale',
+                  description: 'Super Summer Sale!!',
+                ),
                 const SizedBox(
                   height: 8.0,
                 ),
                 SizedBox(
-                  height: 300,
+                  height: 330,
                   child: StreamBuilder<List<Product>>(
                       stream: database.salesProductsStream(),
                       builder: (context, snapshot) {
@@ -117,7 +121,8 @@ class HomePage extends StatelessWidget {
                             itemCount: products.length,
                             itemBuilder: (_, int index) => Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: ListItemHome(product: products[index]),
+                              child: ListItemHome(product: products[index]                            ,    isNew: true,
+                  ),
                             ),
                           );
                         }
@@ -126,13 +131,18 @@ class HomePage extends StatelessWidget {
                         );
                       }),
                 ),
-                _buildHeaderOfList(context,
-                    title: "New", description: "New Super Summer Sale!!"),
+                const SizedBox(height: 8.0,)
+                ,
+                HeaderOfList(
+                  onTap: () {},
+                  title: 'New',
+                  description: 'Super New Products!!',
+                ),
                 const SizedBox(
                   height: 8.0,
                 ),
                 SizedBox(
-                  height: 300,
+                  height: 330,
                   child: StreamBuilder<List<Product>>(
                       stream: database.newProductsStream(),
                       builder: (context, snapshot) {
@@ -149,7 +159,7 @@ class HomePage extends StatelessWidget {
                             itemCount: products.length,
                             itemBuilder: (_, int index) => Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: ListItemHome(product: products[index]),
+                              child: ListItemHome(product: products[index], isNew: true),
                             ),
                           );
                         }
