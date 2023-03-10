@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled1/utilities/routes.dart';
 import 'package:untitled1/views/pages/bottom_bavbar.dart';
 import 'package:untitled1/views/pages/landing_page.dart';
 import 'package:untitled1/views/pages/login_page.dart';
 import 'package:untitled1/views/pages/product_detalis.dart';
 
+import '../controllers/database_controller.dart';
 import '../models/product.dart';
 
 Route<dynamic> onGenerate(RouteSettings settings) {
@@ -23,9 +25,14 @@ Route<dynamic> onGenerate(RouteSettings settings) {
       );
 
     case AppRoutes.productDetailsRoute:
-      final product = settings.arguments as Product;
+      final args = settings.arguments as Map<String, dynamic>;
+      final product = args['product'];
+      final database = args['database'];
       return CupertinoPageRoute(
-        builder: (_) => ProductDetails(product: product),
+        builder: (_) => Provider<Database>.value(
+          value: database,
+          child: ProductDetails(product: product),
+        ),
         settings: settings,
       );
     case AppRoutes.landingPageRoute:
