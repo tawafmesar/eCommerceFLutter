@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled1/controllers/database_controller.dart';
+import 'package:untitled1/models/add_to_cart_model.dart';
+import 'package:untitled1/utilities/constants.dart';
 import 'package:untitled1/views/widgets/drop_down_menu.dart';
 
 import '../../models/product.dart';
 import '../widgets/main_buttom.dart';
-
+import '../widgets/main_dialog.dart';
 
 class ProductDetails extends StatefulWidget {
   final Product product;
@@ -20,10 +24,30 @@ class _ProductDetailsState extends State<ProductDetails> {
   bool isFavorite = false;
   late String dropdownValue;
 
+Future<void> _addToCart(Database database) async {
+    try {
+      final addToCartProduct = AddToCartModel(
+        id: documentIdFromLocalData(),
+        title: widget.product.title,
+        price: widget.product.price,
+        productId: widget.product.id,
+        imgUrl: widget.product.imgUrl,
+        size: dropdownValue,
+      );
+      await database.addToCart(addToCartProduct);
+    } catch (e) {
+      return MainDialog(
+        context: context,
+        title: 'Error',
+        content: 'Couldn\'t adding to the cart, please try again!',
+      ).showAlertDialog();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    final database = Provider.of<Database>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -107,7 +131,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 26.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,7 +164,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   const SizedBox(height: 24.0),
                   MainButton(
                     text: 'Add to cart',
-                    onTap: () {},
+                    onTap: () => _addToCart(database),
                     hasCircularBorder: true,
                   ),
                   const SizedBox(height: 32.0),

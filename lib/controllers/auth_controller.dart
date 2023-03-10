@@ -1,15 +1,22 @@
 import 'package:flutter/cupertino.dart';
+import 'package:untitled1/controllers/database_controller.dart';
 import 'package:untitled1/services/auth.dart';
 import 'package:untitled1/utilities/ename.dart';
 
 import 'package:flutter/material.dart';
 
+import '../models/user_data.dart';
+import '../utilities/constants.dart';
 
 class AuthController with ChangeNotifier {
   final AuthBase auth;
   String email;
   String password;
   AuthFormType authFormType;
+
+  // TODO: Its note best practice thing but it temporary
+  
+  final Database database = FirestoreDatabase('123');
 
   AuthController({
     required this.auth,
@@ -23,8 +30,13 @@ class AuthController with ChangeNotifier {
       if (authFormType == AuthFormType.login) {
         await auth.loginWitEmailAndPassword(email, password);
       } else {
-        await auth.signUpWitEmailAndPassword(email, password);
-      }
+    
+        final user = await auth.signUpWitEmailAndPassword(email, password);
+        await database.setUserData(UserData(
+          uid: user?.uid ?? documentIdFromLocalData(),
+          email: email,
+        ));
+   }
     } catch (e) {
       rethrow;
     }
@@ -63,6 +75,4 @@ class AuthController with ChangeNotifier {
       rethrow;
     }
   }
-
 }
-
