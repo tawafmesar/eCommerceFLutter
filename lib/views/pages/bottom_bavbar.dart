@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:untitled1/views/pages/cart_page.dart';
 
 import 'profile_page.dart';
 import 'home_page.dart';
@@ -17,9 +18,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   List<Widget> _buildScreens() {
     return [
-     const HomePage(),
+      const CartPage(),
       Container(),
-      Container(),
+      const HomePage(),
       Container(),
       const ProfilePage(),
 
