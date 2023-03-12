@@ -16,6 +16,21 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   int totalAmount = 0;
 
+
+  @override
+  Future<void> didChangeDependencies() async {
+    super.didChangeDependencies();
+
+ final myProducts = await Provider.of<Database>(context, listen: false)
+        .myProductsCart()
+        .first;
+    myProducts.forEach((element) {
+      setState(() {
+        totalAmount += element.price;
+      });
+    });
+    }
+
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<Database>(context);
