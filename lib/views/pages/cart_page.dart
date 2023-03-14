@@ -4,7 +4,9 @@ import 'package:untitled1/models/add_to_cart_model.dart';
 import 'package:untitled1/views/widgets/cart_list_item.dart';
 
 import '../../controllers/database_controller.dart';
+import '../../utilities/routes.dart';
 import '../widgets/main_buttom.dart';
+import '../widgets/order_summary_component.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -88,27 +90,19 @@ class _CartPageState extends State<CartPage> {
                           },
                         ),
                       const SizedBox(height: 24.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Total Amount:',
-                            style:
-                                Theme.of(context).textTheme.subtitle1!.copyWith(
-                                      color: Colors.grey,
-                                    ),
-                          ),
-                          Text(
-                            '$totalAmount\$',
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                        ],
-                      ),
+                      
+                       OrderSummaryComponent(
+                        title: 'Total Amount',
+                        value: totalAmount.toString(),
+                       ),
                       const SizedBox(height: 32.0),
                       MainButton(
                         text: 'Checkout',
-                        onTap: () {},
-                        hasCircularBorder: true,
+                        onTap: () => Navigator.of(context, rootNavigator: true)
+                            .pushNamed(
+                          AppRoutes.checkoutPageRoute,
+                          arguments: database,
+                        ),
                       ),
                       const SizedBox(height: 32.0),
                     ],

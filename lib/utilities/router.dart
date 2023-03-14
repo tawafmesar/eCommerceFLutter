@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled1/utilities/routes.dart';
 import 'package:untitled1/views/pages/bottom_bavbar.dart';
+import 'package:untitled1/views/pages/checkout/checkout_page.dart';
 import 'package:untitled1/views/pages/landing_page.dart';
 import 'package:untitled1/views/pages/login_page.dart';
 import 'package:untitled1/views/pages/product_detalis.dart';
@@ -21,6 +22,15 @@ Route<dynamic> onGenerate(RouteSettings settings) {
     case AppRoutes.bottomNavRoute:
       return CupertinoPageRoute(
         builder: (_) => const BottomNavBar(),
+        settings: settings,
+      );
+
+    case AppRoutes.checkoutPageRoute:
+      final database = settings.arguments as Database;
+      return CupertinoPageRoute(
+        builder: (_) => Provider<Database>.value(
+            value: database, 
+            child: const CheckoutPage()),
         settings: settings,
       );
 

@@ -6,11 +6,10 @@ class AppAssets {
       'https://m.media-amazon.com/images/I/61-jBuhtgZL._UX569_.jpg';
 
   /// Shop Page Images
-  /// 
-
-
+  ///
 
   /// Authentication Page Images
   static const facebookIcon = 'assets/facebook-svgrepo-com.svg';
   static const googleIcon = 'assets/google-svgrepo-com.svg';
+  static const mastercardIcon = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png';
 }
