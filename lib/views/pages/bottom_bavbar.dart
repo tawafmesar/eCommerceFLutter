@@ -18,9 +18,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   List<Widget> _buildScreens() {
     return [
-      const CartPage(),
-      Container(),
       const HomePage(),
+      Container(),
+      const CartPage(),
       Container(),
       const ProfilePage(),
 
@@ -45,7 +45,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
 
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.cart),
+        icon: Icon(CupertinoIcons.shopping_cart),
         title: "Cart",
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
